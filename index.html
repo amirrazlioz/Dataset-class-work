@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אתגר: בלשי הדאטה - ניתוח Dataset</title>
+    <title>אתגר: בלשי הדאטה - ניתוח Dataset לבחירה</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
             --accent-blue: #38bdf8;
             --accent-purple: #a855f7;
             --accent-green: #22c55e;
+            --accent-amber: #f59e0b;
             --bg-light: #f8fafc;
             --card-bg: #ffffff;
             --text-dark: #1e293b;
@@ -118,51 +119,6 @@
             gap: 12px;
         }
 
-        .table-responsive {
-            overflow-x: auto;
-            margin: 20px 0;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            text-align: right;
-        }
-
-        th {
-            background: #0f172a;
-            color: white;
-            padding: 12px 14px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border-color);
-            white-space: nowrap;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.82rem;
-            font-weight: 500;
-        }
-
-        .badge-home { background: #e0f2fe; color: #0369a1; }
-        .badge-cafe { background: #fef3c7; color: #b45309; }
-        .badge-library { background: #dcfce7; color: #15803d; }
-        .badge-studyroom { background: #f3e8ff; color: #6b21a8; }
-
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -183,6 +139,58 @@
             color: var(--primary);
             font-size: 1.05rem;
             margin-bottom: 6px;
+        }
+
+        /* Datasets Selection Grid */
+        .datasets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .dataset-option {
+            background: #fafafa;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 18px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .dataset-option:hover {
+            border-color: var(--accent-purple);
+            background: #fdf4ff;
+            transform: translateY(-2px);
+        }
+
+        .dataset-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--accent-purple);
+        }
+
+        .dataset-option h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .dataset-option p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .dataset-tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            color: #475569;
+            font-weight: 600;
         }
 
         .question-block {
@@ -234,6 +242,19 @@
             font-style: italic;
         }
 
+        .dataset-choice-box {
+            background: #fdf4ff;
+            border: 1px solid #f5d0fe;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #701a75;
+        }
+
         @media print {
             body { background: white; padding: 0; }
             .container { max-width: 100%; }
@@ -251,7 +272,7 @@
             <span class="header-badge"><i class="fa-solid fa-users"></i> 3-4 תלמידים</span>
         </div>
         <h1>משימה: חקירת Dataset וגילוי תובנות</h1>
-        <p class="header-subtitle">המשימה: אתם צוות מדעני הנתונים! המנהל שלכם רוצה להבין טוב יותר את הנתונים כדי לשפר את המערכת. איזה סיפור הנתונים שלכם יכולים לספר?</p>
+        <p class="header-subtitle">המשימה: אתם צוות מדעני הנתונים! בחרו מאגר נתונים מתוך הקלאסרום, חקרו אותו וגלו: איזה סיפור הנתונים שלכם יכולים לספר?</p>
     </header>
 
     <!-- Classroom Notice & Steps -->
@@ -259,15 +280,15 @@
         <div class="classroom-notice">
             <i class="fa-solid fa-folder-open fa-lg"></i>
             <div>
-                <strong>הערה למשימה:</strong> יש לפתוח ולהשתמש בקובץ ה-Dataset הבלעדי שנמצא בגוגל קלאסרום (קובץ ה-CSV המלא).
+                <strong>הערה למשימה:</strong> היכנסו לגוגל קלאסרום ובחרו <u>קובץ Dataset אחד בלבד</u> מתוך המאגרים הממתינים לכם במשימה. פתחו את קובץ ה-CSV ועבדו איתו.
             </div>
         </div>
 
         <h2 class="section-title" style="margin-top:0;"><i class="fa-solid fa-list-check"></i> הנחיות לעבודה</h2>
         <div class="steps-grid">
             <div class="step-card">
-                <strong>1. מאגר הנתונים</strong>
-                פתחו את קובץ ה-Dataset בקלאסרום ובחנו את המשתנים והעמודות שבו.
+                <strong>1. בחירת Dataset</strong>
+                ביחרו בקלאסרום קובץ נתונים בנושא שמעניין את הצוות שלכם ופתחו אותו.
             </div>
             <div class="step-card">
                 <strong>2. איסוף וסיווג</strong>
@@ -279,195 +300,96 @@
             </div>
             <div class="step-card">
                 <strong>4. הפיכת תובנה לסיפור</strong>
-                גבשו מסקנה מרכזית והמלצה מעשית מבוססת דאטה עבור המערכת.
+                גבשו מסקנה מרכזית והמלצה מעשית מבוססת דאטה.
             </div>
         </div>
     </div>
 
-    <!-- Data Preview -->
+<!-- Datasets Selection Options Overview -->
     <div class="card">
-        <h2 class="section-title" style="margin-top:0;"><i class="fa-solid fa-table"></i> דגימה מתוך ה-Dataset שבקלאסרום</h2>
-        <p>להלן 10 השורות הראשונות מתוך קובץ ה-Dataset לעיון מהיר:</p>
+        <h2 class="section-title" style="margin-top:0;"><i class="fa-solid fa-layer-group"></i> אפשרויות ל-Datasets בקלאסרום לבחירתכם</h2>
+        <p>להלן 4 מאגרי הנתונים הזמינים עבורכם בקלאסרום. פתחו את הקובץ שנבחר והחלו בחקירה:</p>
 
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>מספר תלמיד</th>
-                        <th>שעות שינה</th>
-                        <th>שעות לימוד</th>
-                        <th>שעות מסך</th>
-                        <th>ציון משנה שעברה</th>
-                        <th>שעות תרגול</th>
-                        <th>מספר שיעורים בשבוע</th>
-                        <th>סביבת לימודים</th>
-                        <th>שיטת לימוד</th>
-                        <th>ציון סופי</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>7.6</td>
-                        <td>1.5</td>
-                        <td>2.5</td>
-                        <td>88</td>
-                        <td>2.1</td>
-                        <td>3</td>
-                        <td><span class="badge badge-home">בית</span></td>
-                        <td>לבד</td>
-                        <td>81</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>5.0</td>
-                        <td>3.1</td>
-                        <td>2.7</td>
-                        <td>59</td>
-                        <td>2.6</td>
-                        <td>4</td>
-                        <td><span class="badge badge-cafe">בית קפה</span></td>
-                        <td>עם חברים</td>
-                        <td>63</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>6.7</td>
-                        <td>1.8</td>
-                        <td>3.3</td>
-                        <td>68</td>
-                        <td>2.7</td>
-                        <td>3</td>
-                        <td><span class="badge badge-library">ספרייה</span></td>
-                        <td>עם חברים</td>
-                        <td>70</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>7.0</td>
-                        <td>2.2</td>
-                        <td>4.5</td>
-                        <td>78</td>
-                        <td>3.3</td>
-                        <td>3</td>
-                        <td><span class="badge badge-home">בית</span></td>
-                        <td>לבד</td>
-                        <td>81</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>5.9</td>
-                        <td>0.9</td>
-                        <td>2.2</td>
-                        <td>77</td>
-                        <td>4.6</td>
-                        <td>5</td>
-                        <td><span class="badge badge-studyroom">חדר לימוד</span></td>
-                        <td>לבד</td>
-                        <td>73</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>7.0</td>
-                        <td>1.0</td>
-                        <td>4.7</td>
-                        <td>73</td>
-                        <td>0.8</td>
-                        <td>4</td>
-                        <td><span class="badge badge-home">בית</span></td>
-                        <td>לבד</td>
-                        <td>65</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>7.1</td>
-                        <td>3.2</td>
-                        <td>5.7</td>
-                        <td>80</td>
-                        <td>1.3</td>
-                        <td>3</td>
-                        <td><span class="badge badge-library">ספרייה</span></td>
-                        <td>עם חברים</td>
-                        <td>78</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>5.9</td>
-                        <td>3.3</td>
-                        <td>3.9</td>
-                        <td>69</td>
-                        <td>2.1</td>
-                        <td>5</td>
-                        <td><span class="badge badge-home">בית</span></td>
-                        <td>עם חברים</td>
-                        <td>72</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>6.7</td>
-                        <td>2.4</td>
-                        <td>6.3</td>
-                        <td>84</td>
-                        <td>2.3</td>
-                        <td>5</td>
-                        <td><span class="badge badge-studyroom">חדר לימוד</span></td>
-                        <td>עם חברים</td>
-                        <td>75</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>5.0</td>
-                        <td>2.1</td>
-                        <td>3.7</td>
-                        <td>80</td>
-                        <td>3.3</td>
-                        <td>4</td>
-                        <td><span class="badge badge-studyroom">חדר לימוד</span></td>
-                        <td>סרטונים</td>
-                        <td>76</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="datasets-grid">
+            <div class="dataset-option">
+                <div class="dataset-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>הרגלי למידה והישגים</h3>
+                <p>שעות שינה, שעות לימוד, שעות מסך, שעות תרגול, סביבת לימודים וציון סופי במבחן.</p>
+                <span class="dataset-tag">Dataset-students_study_habits.csv</span>
+            </div>
+
+            <div class="dataset-option">
+                <div class="dataset-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>התנהגות גולשים וקניות</h3>
+                <p>מיקום גיאוגרפי, ז'אנר מוזיקה, סוג תוכן שנצפה, סכום קניות, שעות גלישה ותגית קליק על פרסומת.</p>
+                <span class="dataset-tag">Dataset-user_behavior.csv</span>
+            </div>
+
+            <div class="dataset-option">
+                <div class="dataset-icon"><i class="fa-solid fa-circle-play"></i></div>
+                <h3>הרגלי צפייה בסטרימינג</h3>
+                <p>גיל משתמש, ז'אנר מועדף, מכשיר צפייה, זמן צפייה שכיח, שעות שבועיות ותגית שדרוג לפרימיום.</p>
+                <span class="dataset-tag">Dataset-streaming_user.csv</span>
+            </div>
+
+            <div class="dataset-option">
+                <div class="dataset-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h3>אורח חיים דיגיטלי (נוער)</h3>
+                <p>כיתה, רשת חברתית עיקרית, שעות מסך, שעות שינה, תדירות גיימינג, ממוצע תעודה ותגית עומס ועייפות.</p>
+                <span class="dataset-tag">Dataset-teen_digital_lifestyle.csv</span>
+            </div>
         </div>
+    </div>
     </div>
 
     <!-- Student Worksheet Questions -->
     <div class="card">
         <h2 class="section-title" style="margin-top:0;"><i class="fa-solid fa-magnifying-glass-chart"></i> דף עבודה לצוות</h2>
 
+        <!-- Dataset Selection Declaration -->
+        <div class="dataset-choice-box">
+            <i class="fa-solid fa-file-csv fa-lg"></i>
+            <span>שם ה-Dataset שבו הצוות שלנו בחר לחקור: _____________________________________</span>
+        </div>
+
         <!-- Step 1: Understanding Dataset Columns -->
         <div class="question-block">
-            <h4><i class="fa-solid fa-database"></i> שלב 1: איזה DATA נאסף ב-Dataset?</h4>
-            <p>רשמו 4 משתנים (עמודות) מרכזיים מתוך קובץ ה-Dataset בקלאסרום, וציינו לגבי כל אחד האם הוא משתנה כמותי או קטגוריאלי (איכותי):</p>
-            <div class="answer-space">1. _________ (סוג: _________)<br>2. _________ (סוג: _________)<br>3. _________ (סוג: _________)<br>4. _________ (סוג: _________)</div>
+            <h4><i class="fa-solid fa-database"></i> שלב 1: איזה DATA נאסף ב-Dataset שלכם?</h4>
+            <p>רשמו 4 משתנים (עמודות) מרכזיים מתוך קובץ ה-Dataset שבחרתם, וציינו לגבי כל אחד האם הוא משתנה כמותי או קטגוריאלי (איכותי):</p>
+            <div class="answer-space">
+                1. ____________________ (סוג המשתנה: ______________)<br>
+                2. ____________________ (סוג המשתנה: ______________)<br>
+                3. ____________________ (סוג המשתנה: ______________)<br>
+                4. ____________________ (סוג המשתנה: ______________)
+            </div>
         </div>
 
         <!-- Step 2: Being Data Detectives -->
         <div class="question-block">
             <h4><i class="fa-solid fa-user-ninja"></i> שלב 2: היו בלשי דאטה - מציאת דפוסים בנתונים</h4>
-            <p>חקרו את הנתונים בקובץ ה-Dataset ומצאו <strong>לפחות 3 דפוסים או קשרים אפשריים</strong> בנתונים.</p>
+            <p>חקרו את השורות והעמודות בקובץ שבחרתם ומצאו <strong>לפחות 3 דפוסים, מגמות או קשרים אפשריים</strong> בנתונים.</p>
             
             <div class="prompt-box">
                 <strong><i class="fa-solid fa-comments"></i> שאלות מנחות לצוות:</strong>
                 <ul>
                     <li>מה אנחנו רואים בנתונים?</li>
-                    <li>איזה קשר או דפוס אפשר לזהות (למשל: בין שעות שינה/מסך/תרגול לבין הציון הסופי)?</li>
-                    <li>האם יש משהו שמפתיע אותנו בנתונים?</li>
+                    <li>איזה קשר או דפוס אפשר לזהות בין משתנים שונים (למשל: קשר בין הרגל מסוים לבין תגית היעד/התוצאה)?</li>
+                    <li>האם יש נתון כלשהו שמפתיע אתכם?</li>
                 </ul>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 12px;">
-                <div class="answer-space"><strong>דפוס 1:</strong> ...</div>
-                <div class="answer-space"><strong>דפוס 2:</strong> ...</div>
-                <div class="answer-space"><strong>דפוס 3:</strong> ...</div>
+                <div class="answer-space"><strong>דפוס / מגמה 1:</strong> ...</div>
+                <div class="answer-space"><strong>דפוס / מגמה 2:</strong> ...</div>
+                <div class="answer-space"><strong>דפוס / מגמה 3:</strong> ...</div>
             </div>
         </div>
 
         <!-- Step 3: Big Question - Telling the Story -->
         <div class="question-block">
             <h4><i class="fa-solid fa-lightbulb"></i> שלב 3: השאלה המרכזית - איזה סיפור הנתונים שלכם יכולים לספר?</h4>
-            <p>הפיקו תובנה מרכזית מתוך הדפוסים שגיליתם, והציעו שיפור או פתרון מעשי עבור מנהל המערכת/בית הספר על בסיס ה-DATA.</p>
-            <div class="answer-space" style="min-height: 100px;">תשובת הצוות (סיפור הנתונים + המלצה מעשית):</div>
+            <p>הפיקו תובנה מרכזית מתוך הדפוסים שגיליתם, והציעו שיפור, פתרון או המלצה מעשית עבור הגורם הרלוונטי (הנהלת בית הספר / מפתחי האפליקציה / המשתמשים) על בסיס ה-DATA.</p>
+            <div class="answer-space" style="min-height: 100px;">תשובת הצוות (סיפור הנתונים + המלצה מעשית מבוססת דאטה):</div>
         </div>
     </div>
 </div>
